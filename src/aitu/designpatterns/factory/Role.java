@@ -1,4 +1,4 @@
-package aitu.designpatterns.user_factory;
+package aitu.designpatterns.factory;
 
 public enum Role {
     USER_ROLE,
