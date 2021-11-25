@@ -1,6 +1,6 @@
-package aitu.designpatterns.observer;
+package kz.maratbekovaidar.observer;
 
-import aitu.designpatterns.factory.users.Admin;
+import kz.maratbekovaidar.users.Admin;
 
 public interface Observable {
     void registerAdmin(Admin admin);

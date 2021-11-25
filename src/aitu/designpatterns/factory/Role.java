@@ -1,6 +1,6 @@
-package aitu.designpatterns.factory;
+package kz.maratbekovaidar;
 
 public enum Role {
-    USER_ROLE,
-    ADMIN_ROLE,
+    ADMIN,
+    DEFAULT
 }

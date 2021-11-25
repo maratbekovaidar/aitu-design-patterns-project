@@ -1,27 +1,8 @@
-package aitu.designpatterns.factory;
+package kz.maratbekovaidar;
 
 public abstract class User {
-    protected int id;
-    protected String username;
-    protected String password;
-    protected String name;
+    public String firstName;
+    public String lastName;
 
-    protected abstract Role getGet();
-
-    // Getters
-    public int getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getName() {
-        return name;
-    }
+    public abstract Role getRole();
 }

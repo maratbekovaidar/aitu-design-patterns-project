@@ -1,52 +1,55 @@
-package aitu.designpatterns.factory;
+package kz.maratbekovaidar;
 
-import aitu.designpatterns.observer.Observable;
-import aitu.designpatterns.factory.users.Admin;
-import aitu.designpatterns.factory.users.Default;
+
+import kz.maratbekovaidar.observer.Observable;
+import kz.maratbekovaidar.users.Admin;
+import kz.maratbekovaidar.users.Default;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserFactory implements Observable {
 
-    List<Admin> adminUsersList = new ArrayList<>();
-    List<User> defaultUsersList = new ArrayList<>();
+    List<Admin> admins = new ArrayList<>();
+    List<Default> defaults = new ArrayList<>();
 
-    public User createUser(int id, String username, String password, String name, String userRole) {
+    public User createUser(String firstName, String lastName, String role) {
         User user;
-        switch (userRole) {
+        switch (role) {
             case "user":
-                user = new Default(id, username, password, name);
-                defaultUsersList.add(user);
-                notifyAdmins();
+                user = new Default(firstName, lastName, Role.DEFAULT);
+                defaults.add((Default) user);
                 return user;
             case "admin":
-                user = new Admin(id, username, password, name);
+                user = new Admin(firstName, lastName, Role.ADMIN);
                 registerAdmin((Admin) user);
+                ((Admin) user).update(defaults);
                 return user;
             default:
+                System.out.println("Incorrect user role! Need admin or user.");
                 return null;
         }
     }
 
     @Override
     public void registerAdmin(Admin admin) {
-        adminUsersList.add(admin);
+        admins.add(admin);
     }
 
     @Override
     public void unregisterAdmin(Admin admin) {
-        adminUsersList.remove(admin);
+        admins.remove(admin);
+        admin.removeRole();
     }
 
     @Override
     public void notifyAdmins() {
-        for (Admin admin: adminUsersList) {
-            admin.update(defaultUsersList);
+        for (Admin admin: admins) {
+            admin.update(defaults);
         }
     }
 
-    public List<User> getDefaultUsersList() {
-        return defaultUsersList;
+    public List<Default> getDefaults() {
+        return defaults;
     }
 }

@@ -1,18 +1,20 @@
-package aitu.designpatterns.factory.users;
+package kz.maratbekovaidar.users;
 
-import aitu.designpatterns.factory.Role;
-import aitu.designpatterns.factory.User;
+import kz.maratbekovaidar.Role;
+import kz.maratbekovaidar.User;
 
 public class Default extends User {
 
-    private Role role = Role.USER_ROLE;
+    Role role = Role.DEFAULT;
 
-    public Default(int id, String username, String password, String name) {
-        super();
+    public Default(String firstName, String lastName, Role role) {
+        super.firstName = firstName;
+        super.lastName = lastName;
+        this.role = role;
     }
 
     @Override
-    protected Role getGet() {
-        return role;
+    public Role getRole() {
+        return this.role;
     }
 }
