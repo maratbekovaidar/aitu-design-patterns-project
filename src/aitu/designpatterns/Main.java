@@ -2,6 +2,13 @@ package aitu.designpatterns;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world");
+        OrderFacade order = new OrderFacade();
+
+        IDoner stardardDonerWithCheeseAndWithJalapeno = new CheeseDecorator(new JalapenoDecorator(new StandardDoner()));
+
+        order.executeOrder(stardardDonerWithCheeseAndWithJalapeno);
+
+        CoffeeOrder coffeeOrder = new CoffeeOrder();
+        coffeeOrder.make();
     }
 }
